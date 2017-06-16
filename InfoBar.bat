@@ -4,7 +4,7 @@ title BATCHOS:Info
 set mypath=%cd%
 setlocal delayexpansion
 cls
-:time    
+:time
 call Load.bat
 color %color%
 echo =============================
