@@ -3,8 +3,8 @@ cls
 :boot
 setlocal EnableExtensions EnableDelayedExpansion
 color 0a
-set version=0.2.1
-set build=48
+set version=0.2.2
+set build=50
 title BATCH OS build %build% ver %version%
 set mypath=%cd% 
 
@@ -457,13 +457,14 @@ ping -n 3 0.0.0.0 >nul
 echo +++++++++++++++++++
 echo +Greetz to:       +
 echo +Sketchy-Cherry   +
-echo +Fuck you ardi    +
 echo +xDaFox           +
 echo +akuma67          +
 echo +LuckyFunk        +
 echo +Opinior          +
 echo +DJLOXMADRECORDS  +
 echo +++++++++++++++++++
+ping -n 4 0.0.0.0 >nul
+echo Fucks to ardiium :)
 ping -n 4 0.0.0.0 >nul
 pause
 goto options
