@@ -6,8 +6,8 @@ color 0a
 set version=0.2.1
 set build=55
 =======
-set version=0.2.2
-set build=56
+set version=0.2.3
+set build=59
 title BATCH OS build %build% ver %version%
 set mypath=%cd%
 
@@ -98,9 +98,10 @@ echo 4.CMD
 echo 5.InfoBar
 echo 6.Windows Cleanup
 echo 7.Music
-echo 8.Calendar
-echo 9.Assistaint
-echo 10.Power Menu
+echo 8.textEdit
+echo 9.Calendar
+echo 10.Assistaint
+echo 11.Power Menu
 echo ================================
 set /p input=
 if %input% == 1 goto calcmenu
@@ -110,9 +111,10 @@ if %input% == 4 goto CMD
 if %input% == 5 goto ReopenInfoBar
 if %input% == 6 goto WindowsCleanup
 if %input% == 7 goto Songs
-if %input% == 8 goto calendar
-if %input% == 9 goto Assistaint
-if %input% == 10 goto Power
+if %input% == 8 start textEdit
+if %input% == 9 goto calendar
+if %input% == 10 goto Assistaint
+if %input% == 11 goto Power
 if %input% == 666 goto seizure
 if /i %input% == shaun goto shit
 
