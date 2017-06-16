@@ -51,14 +51,12 @@ echo ________________________________________
 echo. 
 echo To add another line to your text press enter.
 echo.
-echo Cannot use symbols:"   > < |   "
+echo Cannot use symbols: "> < |"
 echo.
+:edit
 set /p content=">"	
 echo %content%>>%name%
-cls
-echo Save Successful!
-ping localhost -n 2 >nul
-goto 2
+goto edit
 
 :help
 cls

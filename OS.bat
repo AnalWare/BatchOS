@@ -111,7 +111,7 @@ if %input% == 4 goto CMD
 if %input% == 5 goto ReopenInfoBar
 if %input% == 6 goto WindowsCleanup
 if %input% == 7 goto Songs
-if %input% == 8 start textEdit
+if %input% == 8 goto textEdit
 if %input% == 9 goto calendar
 if %input% == 10 goto Assistaint
 if %input% == 11 goto Power
@@ -216,6 +216,8 @@ echo Program does not exist yet.
 pause
 goto menu
 
+:textEdit
+start textEdit
 :info
 cls
 echo.=======================
