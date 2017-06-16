@@ -1,12 +1,12 @@
-@echo off
+@echo on
 cls
 :boot
 setlocal EnableExtensions EnableDelayedExpansion
 color 0a
 set version=0.2.1
-set build=48
+set build=55
 title BATCH OS build %build% ver %version%
-set mypath=%cd% 
+set mypath=%cd%
 
 if exist val.ini (
 	call Load
@@ -70,6 +70,7 @@ echo ==============================
 echo.
 echo Hey! %name%, Welcome to BatchOS.
 echo.
+set BootSeq=BootSeqTrue
 set color=0a
 call Save.bat
 pause
@@ -92,7 +93,7 @@ echo 2.Call
 echo 3.Options
 echo 4.CMD
 echo 5.InfoBar
-echo 6.Antivirus
+echo 6.Windows Cleanup
 echo 7.Music
 echo 8.Calendar
 echo 9.Assistaint
@@ -104,7 +105,7 @@ if %input% == 2 goto call
 if %input% == 3 goto options
 if %input% == 4 goto CMD
 if %input% == 5 goto ReopenInfoBar
-if %input% == 6 goto antivirus
+if %input% == 6 goto WindowsCleanup
 if %input% == 7 goto Songs
 if %input% == 8 goto calendar
 if %input% == 9 goto Assistaint
@@ -155,7 +156,7 @@ cls
 echo =============================
 echo            POWER
 echo =============================
-echo powering off.
+echo Powering off.
 tasklist /V /FI "WINDOWTITLE eq BATCHOS:Info" | find /I "BATCHOS:Info" >NUL && (taskkill /FI "WINDOWTITLE eq BATCHOS:Info" /T /F)
 exit
 :BatchOS-Restart
@@ -163,10 +164,40 @@ cls
 echo =============================
 echo            POWER
 echo =============================
-echo restarting.
+echo Restarting.
 tasklist /V /FI "WINDOWTITLE eq BATCHOS:Info" | find /I "BATCHOS:Info" >NUL && (taskkill /FI "WINDOWTITLE eq BATCHOS:Info" /T /F)
-start OS
+start OS.bat
 exit
+:Windows-SD
+echo =============================
+echo            POWER
+echo =============================
+echo Are you sure you want to do this?
+echo This will shutdown the real Windows
+CHOICE 
+if errorlevel 1 shutdown.exe /s /t 00
+if errorlevel 2 goto Power
+tasklist /V /FI "WINDOWTITLE eq BATCHOS:Info" | find /I "BATCHOS:Info" >NUL && (taskkill /FI "WINDOWTITLE eq BATCHOS:Info" /T /F)
+:Windows-Restart
+echo =============================
+echo            POWER
+echo =============================
+echo Are you sure you want to do this?
+echo This will shutdown and restart the real Windows
+CHOICE 
+if errorlevel 1 shutdown.exe /r /t 00
+if errorlevel 2 goto Power
+tasklist /V /FI "WINDOWTITLE eq BATCHOS:Info" | find /I "BATCHOS:Info" >NUL && (taskkill /FI "WINDOWTITLE eq BATCHOS:Info" /T /F)
+:Windows-Sleep
+echo =============================
+echo            POWER
+echo =============================
+echo Are you sure you want to do this?
+echo This will Make your computer go to sleep
+CHOICE 
+if errorlevel 1 rundll32.exe powrprof.dll,SetSuspendState
+if errorlevel 2 goto Power
+goto menu
 :shit
 cls
 echo ERROR
@@ -336,7 +367,7 @@ echo Program does not exist yet.
 pause
 goto menu
 
-:antivirus
+:WindowsCleanup
 cls
 echo Program does not exist yet.
 pause
@@ -388,7 +419,8 @@ echo 4.Reset
 echo 5.Debug [@echo off]
 echo 6.Credits
 echo 7.Boot
-echo 8.Back To Menu
+echo 8.Self edit
+echo 9.Back To Menu
 
 set /p input=
 if %input% == 0 goto nofriends
@@ -399,7 +431,8 @@ if %input% == 4 goto resetConfirm
 if %input% == 5 goto DebugComfirm
 if %input% == 6 goto Credits
 if %input% == 7 goto BootSettings
-if %input% == 8 goto menu
+if %input% == 8 goto selfedit
+if %input% == 9 goto menu
 cls
 echo =============================
 echo           OPTIONS
@@ -408,6 +441,36 @@ echo Option invalid
 pause
 goto options
 
+:selfedit
+cls
+echo =============================
+echo           OPTIONS
+echo =============================
+echo A portable version of Notepad++ has opened
+echo When you are done dont forget to save.
+echo Close it to continue
+cd Notepad++Portable
+call Notepad++Portable %mypath%/OS.bat
+cd %mypath%
+:afterselfedit
+cls
+echo =============================
+echo           OPTIONS
+echo =============================
+echo To apply the changes, BatchOS needs to restart
+echo Do you wish to do that now?
+echo 1.Yes
+echo 2.No
+set /p input=
+if %input% == 1 goto BatchOS-Restart
+if %input% == 2 goto options
+cls
+echo =============================
+echo           OPTIONS
+echo =============================
+echo Option invalid.
+pause
+goto afterselfedit
 :Credits
 ping -n 1.5 0.0.0.0 >nul
 cls
