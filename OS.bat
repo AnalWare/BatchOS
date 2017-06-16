@@ -1,4 +1,4 @@
-@echo on
+@echo off
 cls
 :boot
 setlocal EnableExtensions EnableDelayedExpansion
